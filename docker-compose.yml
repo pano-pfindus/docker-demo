@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  frontend:
+    image: kubanianzickarra/pfindus-frontend:0.1.0
+    ports:
+      - "3000:80"
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: "pfindus"
+
+  backend:
+    image: kubanianzickarra/pfindus-backend:0.1.0
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
